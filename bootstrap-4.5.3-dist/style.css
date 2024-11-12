@@ -1,0 +1,7 @@
+
+.boxed-header {
+    background-color: blue; /* Optional: Add some background color */
+    text-align: center; /* Center text horizontally */
+    padding: 15px; /* Add some padding for spacing */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Make it!!</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/Dine Divine.png" sizes="48x48" type="image/png">
+    <!-- <meta http-equiv="refresh" content="0; url=login.html"> -->
+    
+    <style>
+        .restaurant-name {
+            font-family: 'Brush Script MT', cursive; /* Choose a stylish font */
+            font-size: 4em; /* Make the font size large */
+            color: #ff6347; /* Tomato color */
+            text-shadow: 2px 2px 8px #555555; /* Add a shadow for effect */
+            text-align: center; /* Center the text */
+            margin-top: 20px;
+            transition: transform 0.3s ease-in-out; /* Smooth hover transition */
+        }
+        .restaurant-name:hover {
+            transform: scale(1.1); /* Slightly increase size on hover */
+        }
+        
+        
+        body{
+            background: url('https://pointos.com/wp-content/uploads/2017/10/cropped-blur-background-of-pub-restaurant-with-wood-table-628137314_2125x1416.jpeg') no-repeat center center fixed;
+        }
+        h1{
+            text-align: center;
+            font-family: cursive;
+            color: #fff;
+        }
+        h3{
+            text-align: center;
+            font-family: cursive;
+            color: #fff;
+        }
+        p{
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            
+        }
+        .card-img-top{
+            width: 300px;
+            height: 200px;
+        }
+        .flex-card {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            width: 300px;
+            grid-template-columns: 50px 1fr;
+        }
+    
+        .flex-card .card-body {
+            flex-grow: 1;
+        }
+        .p{
+            font-size: 12px;
+        }
+        .card-footer{
+            padding-top: 10px;
+        }
+        .card same-height-card flex-card{
+            padding-bottom: 50%;
+        }
+        .col-md-6 col-lg-4{
+            padding-inline: 50%;
+        }
+        /* Make the row container a flexbox */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Ensures space between items */
+        }
+        
+        .card {
+            flex: 0 0 calc(33.33% - 20px); /* Adjusts card width to fill one-third of the row, accounting for gap */
+            margin-bottom: 20px; /* Space between rows */
+        }
+        
+       
+        
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+            transform: scale(1.02); /* Slightly scale up the card */
+        }
+        .col-12{
+            padding-inline: 20px;
+        }
+        
+        /* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Set a fixed height for the card image */
+    object-fit: cover; /* Ensures the image covers the entire area without stretching */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar-nav {
+        display: none; /* Hide links by default */
+        flex-direction: column; /* Stack links vertically */
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 60px; /* Position below the navbar */
+        left: 0;
+    }
+
+    .navbar-nav.active {
+        display: flex; /* Show links when active */
+    }
+
+    .nav-item {
+        margin: 10px 0; /* Space between items */
+        text-align: center; /* Center align text */
+    }
+
+    .navbar-toggler {
+        display: block; /* Show the toggle button */
+    }
+    .footer{
+        background-color: white;
+    }
+    
+    
+}
+        
+
+        
+
+</style>
+
+   
+</head>
+<body>
+    
+    <!--header-->
+    <div class="boxed-header" >
+        <h1 class="restaurant-name">Dine Divine</h1>
+        <h3 class="text-success">Feel your taste buds</h3> 
+    </div>
+    <!--navbar-->
+    <div class="container-fluid">
+        <div class="container mt-3">
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link" href="#" data-category="all">All</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-category="mains">Mains</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-category="starters">Starters</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-category="desserts">Desserts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-category="beverages">Beverages</a></li>
+                        
+                    </ul>
+                    <ul class="nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#" data-category="about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-category="contact us">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search for items...">
+            </div>
+        </div>
+    </div>
+
+    <!--card img-->
+    <!--card1-->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- card 1 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="desserts">
+                <div class="card h-100">
+                    <img src="https://img.lovepik.com/photo/48017/5825.jpg_wh860.jpg" class="card-img-top img-fluid" alt="Tart Tatin">
+                    <div class="card-body">
+                        <h5 class="card-title">Tart Tatin</h5>
+                        <p class="card-text">Category: Desserts</p>
+                        <p class="card-text">A classic French dessert of caramelized apples baked in a buttery pastry and served upside-down.</p>
+                        <p class="card-text"><strong>Price: $6.50</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Tart%20Tatin&price=$6.50" class="btn btn-primary">Order Now</a>
+                    </div>  
+                </div>       
+            </div>
+            <!-- card 2 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/free-photo/traditional-lasagna-with-rich-bolognese-sauce_60438-3536.jpg" class="card-img-top img-fluid" alt="Lasagna Bolognese">
+                    <div class="card-body">
+                        <h5 class="card-title">Lasagna Bolognese</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">A rich and hearty lasagna layered with Bolognese sauce, béchamel, and melted cheese.</p>
+                        <p class="card-text"><strong>Price: $12</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Lasagna%20Bolognese&price=12" class="btn btn-primary">Order Now</a>
+                    
+
+                    </div>  
+                </div>       
+            </div>
+            <!-- card 3 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/free-photo/stir-fry-chicken-sweet-peppers-green-beans_2829-20110.jpg" class="card-img-top img-fluid" alt="Vegetable Stir-Fry">
+                    <div class="card-body">
+                        <h5 class="card-title">Vegetable Stir-Fry</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">A colorful mix of fresh vegetables stir-fried in a savory sauce, served with rice or noodles.</p>
+                        <p class="card-text"><strong>Price: $9</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Vegetable%20Stir-Fry&price=9" class="btn btn-primary">Order Now</a>
+                    </div>  
+                </div>       
+            </div>
+
+
+
+
+            <!-- Card 4 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="starters">
+                <div class="card h-100">
+                    <img src="https://images.pexels.com/photos/1731535/pexels-photo-1731535.jpeg?auto=compress&cs=tinysrgb&w=400" class="card-img-top img-fluid" alt="Soup of the day">
+                    <div class="card-body">
+                        <h5 class="card-title">Soup of the day</h5>
+                        <p class="card-text">Category: Starters</p>
+                        <p class="card-text">Freshly made soup with seasonal ingredients.</p>
+                        <p class="card-text"><strong>Price: $5</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Soup%20of%20the%20day&price=5 " class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="starters">
+                <div class="card h-100">
+                    <img src="https://www.allrecipes.com/thmb/kt9t899s87rKleitZiaUwWOoNJI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/3605381-b506207e5f494e44a7cf5c1bbe488748.jpg" class="card-img-top img-fluid" alt="Bruschetta">
+                    <div class="card-body">
+                        <h5 class="card-title">Bruschetta</h5>
+                        <p class="card-text">Category: Starters</p>
+                        <p class="card-text">Grilled bread rubbed with garlic and topped with diced tomatoes, fresh basil, and mozzarella.</p>
+                        <p class="card-text"><strong>Price: $7</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Bruschetta&price=7" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://media.gettyimages.com/id/1358831517/photo/crispy-chicken-parmesan.jpg?s=612x612&w=0&k=20&c=izCK6IforZt1WU1f467NXB-PPR0TAfEw0aoJ6d8imB0=" class="card-img-top img-fluid" alt="Chicken Parmesan">
+                    <div class="card-body">
+                        <h5 class="card-title">Chicken Parmesan</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">Crispy chicken topped with tomato sauce and mozzarella, served with spaghetti.</p>
+                        <p class="card-text"><strong>Price: $12</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Chicken%20Parmesan&price=12" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        
+    
+    
+        
+            <!-- Card 7 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://media.gettyimages.com/id/463889403/photo/rib-eye-steak.jpg?s=612x612&w=0&k=20&c=igQuEqd2hEwHnwIcuMbiUnQRm5T9Mwk1ASFanAq6iOk=" class="card-img-top img-fluid" alt="Steak Frites">
+                    <div class="card-body">
+                        <h5 class="card-title">Steak Frites</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">Grilled steak served with french fries and salad.</p>
+                        <p class="card-text"><strong>Price: $18</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Steak%20Frites&price=18" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="desserts">
+                <div class="card h-100">
+                    <img src="https://media.istockphoto.com/id/544716244/photo/warm-chocolate-lava-cake-with-molten-center-and-red-currants.webp?b=1&s=170667a&w=0&k=20&c=6NPIcP8XUG4WwbJU-qfLOEP07aU79doAIsqZ8wic478=" class="card-img-top img-fluid" alt="Chocolate Lava Cake">
+                    <div class="card-body">
+                        <h5 class="card-title">Chocolate Lava Cake</h5>
+                        <p class="card-text">Category: Desserts</p>
+                        <p class="card-text">Warm chocolate cake with a gooey molten chocolate center, served with vanilla ice cream.</p>
+                        <p class="card-text"><strong>Price: $8</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Chocolate%20Lava%20Cake&price=8" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 9 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-categocard samry="desserts">
+                <div class="card h-100">
+                    <img src="https://plus.unsplash.com/premium_photo-1666353535417-c86616951727?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXBwbGUlMjBwaWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top img-fluid" alt="Apple Pie">
+                    <div class="card-body">
+                        <h5 class="card-title">Apple Pie</h5>
+                        <p class="card-text">Category: Desserts</p>
+                        <p class="card-text">Classic apple pie with a flaky crust, served with whipped cream.</p>
+                        <p class="card-text"><strong>Price: $6</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Apple%20Pie&price=6" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 10 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMVtwwsiUZhbQ6nzDgKsT7R5HSybEq-AfW0RGCyrxvR1T0e-ei2tqzB0Cno8-Wfq7AzMc&usqp=CAU" class="card-img-top img-fluid" alt="Vegan Burger">
+                    <div class="card-body">
+                        <h5 class="card-title">Vegan Burger</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">Plant-based burger served with fries.</p>
+                        <p class="card-text"><strong>Price: $10</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Vegan%20Burger&price=10" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 11 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="starters">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2Vhc2FyJTIwc2FsYWR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top img-fluid" alt="Caesar Salad">
+                    <div class="card-body">
+                        <h5 class="card-title">Caesar Salad</h5>
+                        <p class="card-text">Category: Starters</p>
+                        <p class="card-text">Fresh romaine lettuce with Caesar dressing, parmesan, and croutons.</p>
+                        <p class="card-text"><strong>Price: $6</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Caesar%20Salad&price=6" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 12 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/premium-photo/gourmet-spaghetti-carbonara-with-prosciutto-white-background-delicious-spaghetti-picture_1020697-153307.jpg" class="card-img-top img-fluid" alt="Spaghetti Carbonara">
+                    <div class="card-body">
+                        <h5 class="card-title">Spaghetti Carbonara</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">Classic carbonara with pancetta, egg, hard cheese, and pepper.</p>
+                        <p class="card-text"><strong>Price: $14</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Spaghetti%20Carbonara&price=14" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 13 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="desserts">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/free-photo/layered-chocolate-tiramisu-cake-with-mascarpone-cream-generated-by-ai_188544-18033.jpg" class="card-img-top img-fluid" alt="Tiramisu">
+                    <div class="card-body">
+                        <h5 class="card-title">Tiramisu</h5>
+                        <p class="card-text">Category: Desserts</p>
+                        <p class="card-text">Italian dessert made of savoiardi dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese.</p>
+                        <p class="card-text"><strong>Price: $7</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Tiramisu&price=7" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 14 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="beverages">
+                <div class="card h-100">
+                    <img src="https://media.istockphoto.com/id/170428990/photo/iced-mocha.webp?b=1&s=170667a&w=0&k=20&c=ItUVpbetBvrKaKcJySbepwehwa2JIJjSOqzHulpvJY0=" class="card-img-top img-fluid" alt="Iced Coffee">
+                    <div class="card-body">
+                        <h5 class="card-title">Iced Coffee</h5>
+                        <p class="card-text">Category: Beverages</p>
+                        <p class="card-text">Chilled coffee served with ice and cream.</p>
+                        <p class="card-text"><strong>Price: $4</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Iced%20Coffee&price=4" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 15 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="beverages">
+                <div class="card h-100">
+                    <img src="https://media.istockphoto.com/id/1217751214/photo/fresh-mango-lassi-and-mango-fruit.webp?b=1&s=170667a&w=0&k=20&c=Jt0J70BwVkGdirVAu78hKb-MiMzN3_GUbCz8SmGUdS8=" class="card-img-top img-fluid" alt="Mango Lassi">
+                    <div class="card-body">
+                        <h5 class="card-title">Mango Lassi</h5>
+                        <p class="card-text">Category: Beverages</p>
+                        <p class="card-text">Refreshing Indian drink made with mango and yogurt.</p>
+                        <p class="card-text"><strong>Price: $5</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Mango%20Lassi&price=5" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 16 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="beverages">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3JlZW4lMjB0ZWF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top img-fluid" alt="Green Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Green Tea</h5>
+                        <p class="card-text">Category: Beverages</p>
+                        <p class="card-text">Traditional green tea with antioxidants.</p>
+                        <p class="card-text"><strong>Price: $3</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Green%20Tea&price=3" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- card 17 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg" class="card-img-top img-fluid" alt="Pizza">
+                    <div class="card-body">
+                        <h5 class="card-title">Pizza</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">Classic margherita pizza with fresh mozzarella, basil, and tomato sauce.</p>
+                        <p class="card-text"><strong>Price: $12</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Pizza&price=12" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- card 18 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="beverages">
+                <div class="card h-100">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWy7KKkv8MaNl-kitORM5NAPOhYFekqx2nsA&s" class="card-img-top img-fluid" alt="Blueberry Basil Smoothie">
+                    <div class="card-body">
+                        <h5 class="card-title">Blueberry Basil Smoothie</h5>
+                        <p class="card-text">Category: Beverages</p>
+                        <p class="card-text">A refreshing smoothie made with blueberries and fresh basil, blended with yogurt for a creamy texture.</p>
+                        <p class="card-text"><strong>Price: $5</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Blueberry%20Basil%20Smoothie&price=5" class="btn btn-primary">Order Now</a>
+                    </div>  
+                </div>       
+            </div>
+            <!--card 19  -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://media.istockphoto.com/id/465049010/photo/stuffed-yellow-and-red-peppers.jpg?s=612x612&w=0&k=20&c=14m9BnzQ7qWJ6byxt6je6xbnF9tlKiKSX6gQqvfeV4Y=" class="card-img-top img-fluid" alt="Stuffed Capsicum">
+                    <div class="card-body">
+                        <h5 class="card-title">Stuffed Capsicum</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">Bell peppers stuffed with a savory mixture of quinoa, vegetables, and herbs, then baked to perfection.</p>
+                        <p class="card-text"><strong>Price: $8</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Stuffed%20Capsicum&price=8" class="btn btn-primary">Order Now</a>
+                    </div>  
+                </div>       
+            </div>
+            <!-- card 20 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="starters">
+                <div class="card h-100">
+                    <img src="https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg" class="card-img-top img-fluid" alt="Green Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Garlic Bread</h5>
+                        <p class="card-text">Category: Starters</p>
+                        <p class="card-text">Crispy toasted bread slices topped with a flavorful garlic butter spread, perfect for any meal.</p>
+                        <p class="card-text"><strong>Price: $4</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Garlic%20Bread&price=4" class="btn btn-primary">Order Now</a>
+                    </div>  
+                </div>       
+            </div>
+            <!-- card 21 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="desserts">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/premium-photo/bananas-foster-decadent-dessert-with-bananas-ruminfused-sauce_818261-24590.jpg" class="card-img-top img-fluid" alt="Banana Foster">
+                    <div class="card-body">
+                        <h5 class="card-title">Banana Foster</h5>
+                        <p class="card-text">Category: Desserts</p>
+                        <p class="card-text">A decadent dessert made with bananas, brown sugar, butter, cinnamon, and rum, flambéed and served with vanilla ice cream.</p>
+                        <p class="card-text"><strong>Price: $7</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Banana%20Foster&price=7" class="btn btn-primary">Order Now</a>
+                    </div>  
+                </div>       
+            </div>
+            <!-- card 22 -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4" data-category="mains">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/free-photo/close-up-melted-mac-cheese_23-2149286849.jpg" class="card-img-top img-fluid" alt="Macaroni and Cheese">
+                    <div class="card-body">
+                        <h5 class="card-title">Macaroni and Cheese</h5>
+                        <p class="card-text">Category: Mains</p>
+                        <p class="card-text">A creamy, cheesy pasta dish made with elbow macaroni, cheddar cheese, and a velvety cheese sauce.</p>
+                        <p class="card-text"><strong>Price: $7</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="order.html?item=Macaroni%20and%20Cheese&price=7" class="btn btn-primary">Order Now</a>
+                    </div>  
+                </div>       
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- About us -->
+<!-- Welcome Section -->
+<section class="bg-light text-center py-5">
+    <div class="container">
+        <h1 class=" text-dark display-4">Welcome to <span class="text-success">DineDivine</span></h1>
+        <p class="lead">Nestled in the heart of Greenway, DineDivine is a sanctuary for food lovers. Our culinary philosophy is simple: create exquisite dishes that ignite your senses and warm your heart.</p>
+    </div>
+</section>
+
+<!-- Our Story -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h3 class="text-center  text-dark mb-4">Our Story</h3>
+        <p>In 2015, passionate food enthusiasts <strong>Meena and Raj Kumar</strong> embarked on a journey to create a dining experience like no other. With a vision to blend traditional recipes with contemporary flair, DineDivine was born. What started as a small family-owned bistro has now blossomed into a beloved restaurant known for its inviting atmosphere and delectable cuisine.</p>
+    </div>
+</section>
+
+<!-- Our Philosophy -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h3 class="text-center text-dark mb-4">Our Philosophy</h3>
+        <p>At DineDivine, we believe that great food starts with the finest ingredients. We source locally whenever possible, supporting our community’s farmers and artisans. Each dish is crafted with care, infused with love, and presented with elegance. Our commitment to quality and sustainability is reflected in every bite.</p>
+    </div>
+</section>
+
+<!-- Meet Our Chef -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h3 class="text-center text-dark mb-4">Meet Our Chef</h3>
+        <p><strong>Chef Anil Kumar</strong> leads our culinary team with over 25 years of experience. A maestro in the kitchen, Chef Anil combines traditional techniques with innovative twists to create dishes that are both familiar and extraordinary. His dedication to culinary excellence and passion for flavors are the heart and soul of DineDivine.</p>
+    </div>
+</section>
+
+<!-- The DineDivine Experience -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h3 class="text-center text-dark mb-4">The DineDivine Experience</h3>
+        <p>Step into our elegantly designed dining room, where warm lighting and modern décor set the stage for a memorable meal. Whether you’re enjoying a casual lunch, a family dinner, or a romantic evening, DineDivine offers the perfect ambiance for every occasion.</p>
+    </div>
+</section>
+
+<!-- Customer Experience -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h3 class="text-center text-dark mb-4">Customer Experience</h3>
+        <p>At DineDivine, your satisfaction is our priority. Our attentive staff is committed to providing exceptional service, ensuring that every visit feels special. We strive to make each guest feel like part of our family, with personalized touches that go beyond the plate.</p>
+    </div>
+</section>
+
+
+
+
+    
+    
+    
+   
+
+
+    <!-- contact us -->
+    <div class="container-fluid bg-dark py-5">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-white text-center">Contact Us</h3>
+                <div class="row">
+                    <!-- Social Media -->
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <h4 class="text-white mt-4">Social Media</h4>
+                        <ul class="list-unstyled d-flex align-items-center mt-3">
+                            <li><a href="https://facebook.com/DineDivine" target="_blank">
+                                <img src="https://img.icons8.com/?size=100&id=118485&format=png&color=FFFFFF" alt="Facebook Icon" style="width: 50px; height: 50px;"></a>
+                            </li>
+                            <li><a href="https://instagram.com/DineDivine" target="_blank">
+                                <img src="https://img.icons8.com/?size=100&id=F5uhAprjMnxb&format=png&color=FFFFFF" alt="Instagram Icon" style="width: 50px; height: 50px;"></a>
+                            </li>
+                            <li><a href="https://twitter.com/DineDivine" target="_blank">
+                                <img src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=FFFFFF" alt="Twitter Icon" style="width: 50px; height: 50px;"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Location -->
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <h4 class="text-white mt-4">Location</h4>
+                        <div class="text-white mt-2">123 Greenway Blvd, Springfield, IL 62701, USA</div>
+                    </div>
+                    <!-- Contact Information -->
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <h4 class="text-white mt-4">Contact Information</h4>
+                        <div class="text-white mt-2">Phone: +91 98765 43210</div>
+                        <div class="text-white">Email: <a href="mailto:contact@DineDivine.com" class="text-white">contact@DineDivine.com</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- Footer -->
+     <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 DineDivine | All Rights Reserved</p>
+    </footer>
+    
+    
+
+    
+    
+    
+   
+    
+    
+    
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="app.js"></script>
+
+    
+</body>
+</html>

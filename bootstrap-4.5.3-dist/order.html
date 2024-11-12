@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Now</title>
+    <link rel="icon" href="images/Dine Divine.png" sizes="48x48" type="image/png">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://pointos.com/wp-content/uploads/2017/10/cropped-blur-background-of-pub-restaurant-with-wood-table-628137314_2125x1416.jpeg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        form, ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        label, select, button, p, ul, input[type="number"] {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        p, li {
+            font-size: 18px;
+            color: #555;
+        }
+        
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Your Meal</h1>
+        <form id="orderForm">
+            <p>Item: <span id="itemName"></span></p>
+            <p>Base Price: $<span id="itemPrice"></span></p>
+
+            <label for="portionSize">Portion Size:</label>
+            <select id="portionSize" name="portionSize" onchange="updateRate()">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+
+            <p>Rate: $<span id="rate"></span></p>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updateRate()">
+
+            <label for="tableNumber">Table Number:</label>
+            <input type="text" id="tableNumber" name="tableNumber">
+
+            <button type="button" onclick="addToCart()">Add to Cart</button>
+        </form>
+
+        <h2>Your Cart</h2>
+        <ul id="cartItems"></ul>
+        <p>Total: $<span id="totalRate">0.00</span></p>
+        <button id="placeOrderButton" type="button" onclick="placeOrder()">Place Order</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const basePrices = {
+                "Tart Tatin":6.50,
+                "Soup of the day":5.00,
+                "Bruschetta":7.00,
+                "Chicken Parmesan":12.00,
+                "Steak Frites":18.00,
+                "Chocolate Lava Cake":8.00,
+                "Apple Pie":6.00,
+                "Caesar Salad":6.00,
+                "Spaghetti Carbonara":14.00,
+                "Tiramisu":7.00,
+                "Iced Coffee":4.00,
+                "Mango Lassi":5.00,
+                "Green Tea":3.00,
+                "Blueberry Basil Smoothie":5.00,
+                "Stuffed Capsicum":8.00,
+                "Banana Foster":7.00,
+                "Macaroni and Cheese":7.00,
+                "Garlic Bread":4.00,
+                "Vegetable Stir-Fry": 9.00,
+                "Lasagna Bolognese": 12.00,
+                "Pizza": 12.00,
+                "Vegan Burger": 10.00,
+            };
+        
+            const urlParams = new URLSearchParams(window.location.search);
+            const itemName = urlParams.get('item');
+            const itemPrice = basePrices[itemName] || 0;
+        
+            document.getElementById("itemName").textContent = itemName;
+            document.getElementById("itemPrice").textContent = itemPrice.toFixed(2);
+            document.getElementById("rate").textContent = itemPrice.toFixed(2);
+        
+            window.updateRate = function() {
+                const portionSize = document.getElementById("portionSize").value;
+                const quantity = parseInt(document.getElementById("quantity").value) || 1;
+                let rate = itemPrice;
+        
+                if (portionSize === "medium") {
+                    rate += 2.00;
+                } else if (portionSize === "large") {
+                    rate += 4.00;
+                }
+        
+                document.getElementById("rate").textContent = (rate * quantity).toFixed(2);
+            };
+        
+            window.addToCart = function() {
+                const quantity = parseInt(document.getElementById("quantity").value);
+                const tableNumber = document.getElementById("tableNumber").value;
+                const rate = parseFloat(document.getElementById("rate").textContent);
+                const order = { itemName, quantity, rate, tableNumber };
+        
+                const cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+                cartItems.push(order);
+                sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+                //sessionStorage.setItem("tableNumber", tableNumber);
+                updateCartDisplay();
+            };
+        
+            window.updateCartDisplay = function() {
+                const cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+                const cartItemsList = document.getElementById("cartItems");
+                cartItemsList.innerHTML = "";
+        
+                let totalRate = 0;
+        
+                cartItems.forEach(item => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${item.itemName} x${item.quantity}: $${item.rate.toFixed(2)}`;
+                    cartItemsList.appendChild(listItem);
+                    totalRate += item.rate;
+                });
+        
+                document.getElementById("totalRate").textContent = totalRate.toFixed(2);
+            };
+        
+            window.placeOrder=function() {
+                const cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+                if (cartItems.length === 0) {
+                    alert("Your cart is empty. Please add items before placing the order.");
+                    return;
+                }
+                
+                // Store the order in `sessionStorage` for the confirmation page
+                sessionStorage.setItem("placedOrder", JSON.stringify(cartItems));
+                
+                // Store the order in `localStorage` for staff access
+                let allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+                allOrders.push(cartItems);  // Add the new order to all orders
+                localStorage.setItem("allOrders", JSON.stringify(allOrders));
+            
+                // Clear the cart and navigate to the confirmation page
+                sessionStorage.removeItem("cartItems");
+                window.location.href = "order-confirmation.html";
+            }
+            
+        });   
+        
+    </script>
+</body>
+</html>

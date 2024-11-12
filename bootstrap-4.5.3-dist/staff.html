@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Orders</title>
+    <link rel="icon" href="images/Dine Divine.png" sizes="48x48" type="image/png">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .orders-container { max-width: 600px; margin: 20px auto; }
+        .order { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        h2, h3 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 8px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="orders-container">
+        <h2>Staff Orders View</h2>
+        <div id="ordersList"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+            const ordersList = document.getElementById("ordersList");
+
+            allOrders.forEach((order, index) => {
+                const orderDiv = document.createElement("div");
+                orderDiv.classList.add("order");
+                orderDiv.innerHTML = `<h3>Order #${index + 1}</h3>`;
+                
+                const table = document.createElement("table");
+                table.innerHTML = `
+                    <thead>
+                        <tr><th>Item</th><th>Quantity</th><th>Price</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr><td colspan="2" class="total">Total</td><td class="total" id="totalPrice${index}"></td></tr>
+                    </tfoot>
+                `;
+
+                let total = 0;
+                order.forEach(item => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td>${item.itemName}</td><td>${item.quantity}</td><td>$${item.rate.toFixed(2)}</td>`;
+                    table.querySelector("tbody").appendChild(row);
+                    total += item.rate;
+                });
+
+                table.querySelector(`#totalPrice${index}`).textContent = `$${total.toFixed(2)}`;
+                orderDiv.appendChild(table);
+                ordersList.appendChild(orderDiv);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="icon" href="images/Dine Divine.png" sizes="48x48" type="image/png">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .bill-container { max-width: 500px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="bill-container">
+        <h2>Order Confirmation</h2>
+        <table id="orderTable">
+            <thead>
+                <tr><th>Item</th><th>Quantity</th><th>Price</th><th>Table Number</th></tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr><td colspan="2" class="total">Total</td><td class="total" id="totalPrice"></td></tr>
+            </tfoot>
+        </table>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const placedOrder = JSON.parse(sessionStorage.getItem("placedOrder"));
+            const tableNumber=JSON.parse(sessionStorage.getItem("tableNumber"));
+            const orderTableBody = document.querySelector("#orderTable tbody");
+            let total = 0;
+
+            placedOrder.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${item.itemName}</td><td>${item.quantity}</td><td>$${item.rate.toFixed(2)}</td>`;
+                orderTableBody.appendChild(row);
+                total += item.rate;
+            });
+            
+            document.getElementById("totalPrice").textContent = `$${total.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
