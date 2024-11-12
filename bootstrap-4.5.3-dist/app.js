@@ -5,7 +5,7 @@ function validateLogin() {
     const staffPassword = "1234"; // Staff password
 
     if (userType === "user" && password === userPassword) {
-        window.location.href = "index.html"; // Redirect users to index page
+        window.location.href = "home.html"; // Redirect users to index page
     } else if (userType === "staff" && password === staffPassword) {
         window.location.href = "staff.html"; // Redirect staff to staff page
     } else {
