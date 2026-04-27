@@ -30,7 +30,6 @@ A complete Node.js backend for a restaurant ordering website with authentication
 ### 1. Install Dependencies
 
 ```bash
-cd w:\nallu_projects\Restaurant-Website
 npm install
 ```
 
