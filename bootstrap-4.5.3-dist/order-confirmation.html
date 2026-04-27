@@ -17,7 +17,12 @@
 </head>
 <body>
     <div class="bill-container">
-        <h2>Order Confirmation</h2>
+        <div style="background-color: #28a745; color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h1 style="margin: 0; font-size: 2.5em;">✓ Order Confirmed</h1>
+            <h2 style="margin: 10px 0 0 0; font-size: 1.2em;">Order #<span id="orderNumber" style="font-weight: bold; font-size: 1.5em;">-</span></h2>
+            <p style="margin: 10px 0 0 0; font-size: 0.9em;">Your order has been placed successfully</p>
+        </div>
+        <h3>Order Details</h3>
         <table id="orderTable">
             <thead>
                 <tr><th>Item</th><th>Quantity</th><th>Price</th><th>Table Number</th></tr>
@@ -27,22 +32,40 @@
                 <tr><td colspan="2" class="total">Total</td><td class="total" id="totalPrice"></td></tr>
             </tfoot>
         </table>
+        <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: center;">
+            <button onclick="window.location.href='home.html'" style="background-color: #007BFF; color: white; padding: 12px 25px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
+                Continue Shopping
+            </button>
+            <button onclick="window.location.href='home.html'" style="background-color: #6c757d; color: white; padding: 12px 25px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
+                Back to Menu
+            </button>
+        </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Get order ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            
+            if (orderId) {
+                document.getElementById("orderNumber").textContent = orderId;
+            }
+            
             const placedOrder = JSON.parse(sessionStorage.getItem("placedOrder"));
-            const tableNumber=JSON.parse(sessionStorage.getItem("tableNumber"));
+            const tableNumber = JSON.parse(sessionStorage.getItem("tableNumber"));
             const orderTableBody = document.querySelector("#orderTable tbody");
             let total = 0;
 
-            placedOrder.forEach(item => {
-                const row = document.createElement("tr");
-                row.innerHTML = `<td>${item.itemName}</td><td>${item.quantity}</td><td>$${item.rate.toFixed(2)}</td>`;
-                orderTableBody.appendChild(row);
-                total += item.rate;
-            });
-            
-            document.getElementById("totalPrice").textContent = `$${total.toFixed(2)}`;
+            if (placedOrder && Array.isArray(placedOrder)) {
+                placedOrder.forEach(item => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td>${item.itemName}</td><td>${item.quantity}</td><td>$${item.rate.toFixed(2)}</td>`;
+                    orderTableBody.appendChild(row);
+                    total += item.rate * item.quantity;
+                });
+                
+                document.getElementById("totalPrice").textContent = `$${total.toFixed(2)}`;
+            }
         });
     </script>
 </body>
